@@ -1,0 +1,71 @@
+<Window x:Class="OledSettings.MainWindow"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ Title="OLED Desktop Mode — Settings" Width="840" Height="860"
+ MinWidth="620" MinHeight="540" WindowStartupLocation="CenterScreen"
+ FontFamily="Segoe UI Variable, Segoe UI" FontSize="14" ThemeMode="System"
+ Loaded="OnLoaded" SourceInitialized="OnSourceInitialized">
+ <Grid Margin="28,20,28,24">
+  <Grid.RowDefinitions>
+   <RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/>
+  </Grid.RowDefinitions>
+  <StackPanel Margin="0,0,0,22">
+   <TextBlock Text="OLED Desktop Mode" FontSize="30" FontWeight="SemiBold"/>
+   <StackPanel Orientation="Horizontal" Margin="0,10,0,2">
+    <TextBlock Text="{DynamicResource L39}" VerticalAlignment="Center" Margin="0,0,10,0"/>
+    <ComboBox x:Name="LanguagePicker" SelectionChanged="OnLanguageChanged" DisplayMemberPath="Name" MinWidth="155"/>
+   </StackPanel>
+   <TextBlock Text="{DynamicResource L0}" Margin="0,6,0,0" Opacity="0.7" TextWrapping="Wrap"/>
+  </StackPanel>
+  <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="0,0,8,0">
+   <StackPanel>
+    <Border Style="{StaticResource Card}">
+     <CheckBox x:Name="StartupToggle" Content="{DynamicResource L44}" Click="OnStartupToggle"/>
+    </Border>
+    <Border Style="{StaticResource Card}">
+     <Grid>
+      <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+      <StackPanel Margin="0,0,20,0">
+       <TextBlock Text="{DynamicResource L1}" FontWeight="SemiBold" FontSize="16"/>
+       <TextBlock Text="{DynamicResource L2}" TextWrapping="Wrap" Margin="0,6,0,0" Opacity="0.7"/>
+      </StackPanel>
+      <CheckBox x:Name="EnabledToggle" Grid.Column="1" Content="{DynamicResource L3}" VerticalAlignment="Center" Click="OnToggle"
+       AutomationProperties.Name="{DynamicResource L4}"/>
+     </Grid>
+    </Border>
+    <Border Style="{StaticResource Card}">
+     <Grid>
+      <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+      <StackPanel Margin="0,0,16,0">
+       <TextBlock Text="Monitor" FontWeight="SemiBold" FontSize="16" Margin="0,0,0,10"/>
+       <ComboBox x:Name="MonitorPicker" DisplayMemberPath="DisplayName" SelectionChanged="OnMonitorChanged"
+        AutomationProperties.Name="{DynamicResource L5}" HorizontalAlignment="Stretch"/>
+      </StackPanel>
+      <Button Grid.Column="1" Content="{DynamicResource L6}" Click="OnRefresh" VerticalAlignment="Bottom" Padding="16,7"/>
+     </Grid>
+    </Border>
+    <TextBlock Text="{DynamicResource L7}" FontSize="20" FontWeight="SemiBold" Margin="0,18,0,6"/>
+    <TextBlock Text="{DynamicResource L8}" TextWrapping="Wrap" Opacity="0.7" Margin="0,0,0,14"/>
+    <StackPanel x:Name="ColorRows"/>
+    <Border Style="{StaticResource Card}" Margin="0,10,0,0">
+     <StackPanel>
+      <TextBlock Text="{DynamicResource L9}" FontWeight="SemiBold"/>
+      <TextBlock Text="{DynamicResource L10}" TextWrapping="Wrap" Margin="0,6,0,0" Opacity="0.7"/>
+     </StackPanel>
+    </Border>
+   </StackPanel>
+  </ScrollViewer>
+  <Grid Grid.Row="2" Margin="0,20,0,0">
+   <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+   <TextBlock x:Name="Feedback" Text="{DynamicResource L11}" TextWrapping="Wrap" Margin="0,0,0,14" AutomationProperties.LiveSetting="Polite"/>
+   <Grid Grid.Row="1">
+    <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+    <Button Content="{DynamicResource L12}" Click="OnReset" HorizontalAlignment="Left" Padding="14,8"/>
+    <Button Grid.Column="1" Content="{DynamicResource L13}" Click="OnHide" Margin="12,0,8,0" Padding="20,8"/>
+    <Button x:Name="SaveButton" Grid.Column="2" Content="{DynamicResource L14}" Click="OnSave" Padding="20,8"
+     Background="{DynamicResource AccentFillColorDefaultBrush}"
+     Foreground="{DynamicResource TextOnAccentFillColorPrimaryBrush}"/>
+   </Grid>
+  </Grid>
+ </Grid>
+</Window>
